@@ -4,10 +4,11 @@
   <p>Edit <code>components/HelloWorld.vue</code> to test hot module replacement.</p>
   <p>{{data.counter}}</p>
   <p>{{data.doubleCounter}}</p>
+  <p>{{msg2}}</p>
 </template>
 
 <script>
-import {computed, reactive, onMounted, onUnmounted} from 'vue'
+import {computed, reactive, onMounted, onUnmounted, ref} from 'vue'
 
 export default {
   name: 'HelloWorld',
@@ -37,7 +38,9 @@ export default {
     onUnmounted(() => {
       clearInterval(timer)
     })
-    return {data}
+
+    const msg2 = ref('some message');
+    return {data, msg2}
   }
 }
 </script>
