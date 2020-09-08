@@ -5,10 +5,11 @@
   <p>{{counter}}</p>
   <p>{{doubleCounter}}</p>
   <p>{{msg2}}</p>
+  <p ref="desc"></p>
 </template>
 
 <script>
-import {computed, reactive, onMounted, onUnmounted, ref, toRefs} from 'vue'
+import {computed, reactive, onMounted, onUnmounted, ref, toRefs, watch} from 'vue'
 
 export default {
   name: 'HelloWorld',
@@ -24,9 +25,18 @@ export default {
     // counter相关
     // const data = useCounter();
     // 使用toRefs之后可以这样用
-    const {counter, doubleCounter} = useCounter();
-    const msg2 = ref('some message');
-    return {counter, doubleCounter, msg2}
+    const {counter, doubleCounter} = useCounter()
+    const msg2 = ref('some message')
+
+    // 使用元素的引用
+    const desc = ref(null)
+
+    // watch
+    watch(counter, (val, oldVal) => {
+      const p = desc.value
+      p.textContent = `counter change from ${oldVal} to ${val}`
+    })
+    return {counter, doubleCounter, msg2, desc}
   }
 }
 
