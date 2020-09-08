@@ -6,13 +6,18 @@
   <p>{{doubleCounter}}</p>
   <p>{{msg2}}</p>
   <p ref="desc"></p>
+  <ModalButton></ModalButton>
 </template>
 
 <script>
 import {computed, reactive, onMounted, onUnmounted, ref, toRefs, watch} from 'vue'
+import ModalButton from './ModalButton.vue'
 
 export default {
   name: 'HelloWorld',
+  components: {
+    ModalButton
+  },
   props: {
     msg: String
   },
