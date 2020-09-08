@@ -21,26 +21,32 @@ export default {
     }
   },
   setup() {
-    const data = reactive({
-      counter: 1,
-      doubleCounter: computed(() => data.counter * 2)
-    })
-
-    // 生命周期
-    let timer
-    onMounted(() => {
-      timer = setInterval(() => {
-        data.counter++
-      }, 1000)
-    })
-
-    // 卸载
-    onUnmounted(() => {
-      clearInterval(timer)
-    })
-
+    // counter相关
+    const data = useCounter();
     const msg2 = ref('some message');
     return {data, msg2}
   }
+}
+
+function useCounter() {
+  const data = reactive({
+    counter: 1,
+    doubleCounter: computed(() => data.counter * 2)
+  })
+
+  // 生命周期
+  let timer
+  onMounted(() => {
+    timer = setInterval(() => {
+      data.counter++
+    }, 1000)
+  })
+
+  // 卸载
+  onUnmounted(() => {
+    clearInterval(timer)
+  })
+
+  return data
 }
 </script>
