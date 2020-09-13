@@ -7,16 +7,19 @@
   <p>{{msg2}}</p>
   <p ref="desc"></p>
   <ModalButton></ModalButton>
+  <Emits @click="onClick"></Emits>
 </template>
 
 <script>
 import {computed, reactive, onMounted, onUnmounted, ref, toRefs, watch} from 'vue'
 import ModalButton from './ModalButton.vue'
+import Emits from './Emits.vue'
 
 export default {
   name: 'HelloWorld',
   components: {
-    ModalButton
+    ModalButton,
+    Emits
   },
   props: {
     msg: String
@@ -42,7 +45,12 @@ export default {
       p.textContent = `counter change from ${oldVal} to ${val}`
     })
     return {counter, doubleCounter, msg2, desc}
-  }
+  },
+  methods: {
+    onClick() {
+      console.log('clecked!');
+    }
+  },
 }
 
 function useCounter() {
