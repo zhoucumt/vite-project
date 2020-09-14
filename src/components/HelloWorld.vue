@@ -8,6 +8,9 @@
   <p ref="desc"></p>
   <ModalButton></ModalButton>
   <Emits @click="onClick"></Emits>
+
+  <!-- 实例方法组件 -->
+  <comp></comp>
 </template>
 
 <script>

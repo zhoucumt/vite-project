@@ -1,9 +1,13 @@
-import { createApp, createRenderer} from 'vue'
+import { createApp, createRenderer, h} from 'vue'
 import App from './App.vue'
 import './index.css'
 import CanvasApp from './CanvasApp.vue'
 
-createApp(App).mount('#app')
+createApp(App)
+  .component("comp", {
+    render: () => h("div", "i am comp")
+  })
+  .mount('#app')
 
 // 自定义渲染器
 const nodeOps = {
