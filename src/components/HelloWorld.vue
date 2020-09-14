@@ -14,6 +14,8 @@
 
   <!-- v-model的使用 -->
   <VmodelTest v-model="counter"></VmodelTest>
+  <!-- 等效于 -->
+  <!-- <VmodelTest :counter="counter" @update:counter="counter=$event"></VmodelTest> -->
 </template>
 
 <script>
@@ -26,7 +28,8 @@ export default {
   name: 'HelloWorld',
   components: {
     ModalButton,
-    Emits
+    Emits,
+    VmodelTest
   },
   props: {
     msg: String
