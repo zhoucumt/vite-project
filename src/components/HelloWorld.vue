@@ -11,12 +11,16 @@
 
   <!-- 实例方法组件 -->
   <comp></comp>
+
+  <!-- v-model的使用 -->
+  <VmodelTest v-model="counter"></VmodelTest>
 </template>
 
 <script>
 import {computed, reactive, onMounted, onUnmounted, ref, toRefs, watch} from 'vue'
 import ModalButton from './ModalButton.vue'
 import Emits from './Emits.vue'
+import VmodelTest from './VmodelTest.vue'
 
 export default {
   name: 'HelloWorld',
@@ -29,7 +33,8 @@ export default {
   },
   data() {
     return {
-      count: 0
+      count: 0,
+      counter: 1
     }
   },
   setup() {
