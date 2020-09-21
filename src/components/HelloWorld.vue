@@ -1,7 +1,10 @@
 <template>
   <h1>{{ msg }}</h1>
   <button @click="count++">count is: {{ count }}</button>
-  <p>Edit <code>components/HelloWorld.vue</code> to test hot module replacement.</p>
+  <p>
+    Edit
+    <code>components/HelloWorld.vue</code> to test hot module replacement.
+  </p>
   <p>{{counter}}</p>
   <p>{{doubleCounter}}</p>
   <p>{{msg2}}</p>
@@ -17,76 +20,93 @@
   <!-- 等效于 -->
   <!-- <VmodelTest :counter="counter" @update:counter="counter=$event"></VmodelTest> -->
 
-   <!-- 函数式组件 -->
+  <!-- 函数式组件 -->
   <Functional level="3">这是一个动态h元素</Functional>
+
+   <!-- render api发生变化 -->
+  <RenderTest v-model:counter="counter">
+    <template v-slot:default>title</template>
+    <template v-slot:content>content....</template>
+  </RenderTest>
 </template>
 
 <script>
-import {computed, reactive, onMounted, onUnmounted, ref, toRefs, watch} from 'vue'
-import ModalButton from './ModalButton.vue'
-import Emits from './Emits.vue'
-import VmodelTest from './VmodelTest.vue'
+import {
+  computed,
+  reactive,
+  onMounted,
+  onUnmounted,
+  ref,
+  toRefs,
+  watch,
+  h,
+} from "vue";
+import ModalButton from "./ModalButton.vue";
+import Emits from "./Emits.vue";
+import VmodelTest from "./VmodelTest.vue";
 import Functional from "./Functional.vue";
+import RenderTest from "./RenderTest.vue";
 
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   components: {
     ModalButton,
     Emits,
     VmodelTest,
-    Functional
+    Functional,
+    RenderTest,
   },
   props: {
-    msg: String
+    msg: String,
   },
   data() {
     return {
       count: 0,
-      counter: 1
-    }
+      counter: 1,
+    };
   },
   setup() {
     // counter相关
     // const data = useCounter();
     // 使用toRefs之后可以这样用
-    const {counter, doubleCounter} = useCounter()
-    const msg2 = ref('some message')
+    const { counter, doubleCounter } = useCounter();
+    const msg2 = ref("some message");
 
     // 使用元素的引用
-    const desc = ref(null)
+    const desc = ref(null);
 
     // watch
     watch(counter, (val, oldVal) => {
-      const p = desc.value
-      p.textContent = `counter change from ${oldVal} to ${val}`
-    })
-    return {counter, doubleCounter, msg2, desc}
+      const p = desc.value;
+      p.textContent = `counter change from ${oldVal} to ${val}`;
+    });
+    return { counter, doubleCounter, msg2, desc };
   },
   methods: {
     onClick() {
-      console.log('clecked!');
-    }
+      console.log("clecked!");
+    },
   },
-}
+};
 
 function useCounter() {
   const data = reactive({
     counter: 1,
-    doubleCounter: computed(() => data.counter * 2)
-  })
+    doubleCounter: computed(() => data.counter * 2),
+  });
 
   // 生命周期
-  let timer
+  let timer;
   onMounted(() => {
     timer = setInterval(() => {
-      data.counter++
-    }, 1000)
-  })
+      data.counter++;
+    }, 1000);
+  });
 
   // 卸载
   onUnmounted(() => {
-    clearInterval(timer)
-  })
+    clearInterval(timer);
+  });
 
   return toRefs(data);
 }
