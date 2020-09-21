@@ -16,6 +16,9 @@
   <VmodelTest v-model="counter"></VmodelTest>
   <!-- 等效于 -->
   <!-- <VmodelTest :counter="counter" @update:counter="counter=$event"></VmodelTest> -->
+
+   <!-- 函数式组件 -->
+  <Functional level="3">这是一个动态h元素</Functional>
 </template>
 
 <script>
@@ -23,13 +26,15 @@ import {computed, reactive, onMounted, onUnmounted, ref, toRefs, watch} from 'vu
 import ModalButton from './ModalButton.vue'
 import Emits from './Emits.vue'
 import VmodelTest from './VmodelTest.vue'
+import Functional from "./Functional.vue";
 
 export default {
   name: 'HelloWorld',
   components: {
     ModalButton,
     Emits,
-    VmodelTest
+    VmodelTest,
+    Functional
   },
   props: {
     msg: String
