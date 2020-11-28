@@ -1,11 +1,14 @@
 <template>
   <div>
-    <video controls width="640" height="380" src=""></video>
+    <!-- <video controls width="640" height="380" src=""></video> -->
+    <Barrage></Barrage>
   </div>
 </template>
 
 <script>
+import {reactive} from 'vue';
 import videoSrc from '../assets/test.mp4';
+import Barrage from './Barrage.vue';
 
 export default {
   name: 'Video',
@@ -29,5 +32,8 @@ export default {
       handleClick
     }
   },
+  components: {
+    Barrage
+  }
 }
 </script>
