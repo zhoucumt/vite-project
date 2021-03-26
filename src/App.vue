@@ -1,18 +1,22 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
   <!-- <HelloWorld msg="Hello Vue 3.0 + Vite" /> -->
-  <videoPlayer></videoPlayer>
+  <div>{{name}}</div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-import videoPlayer from './components/Video.vue';
+import {effect, reactive, toRefs} from 'vue';
 
 export default {
   name: 'App',
-  components: {
-    // HelloWorld
-    videoPlayer
+
+  setup() {
+    const state = reactive({name: 'Tom', count: 0});
+    effect(() => {
+      console.log('effect');
+    });
+    return toRefs(state);
   }
+
 }
 </script>
